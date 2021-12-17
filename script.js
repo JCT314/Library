@@ -1,12 +1,12 @@
-let myLibrary = [];/*[{title:"Green Eggs and Ham", author:"Dr.Seuss",pages:32},
-{title:"Percy Jackson", author:"Rick Riordan",pages:269},];
-const container = document.querySelector('.container');*/
+let myLibrary = [{title:"Green Eggs and Ham", author:"Dr.Seuss",pages:32,read:false},
+{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},];
 const container = document.querySelector('.container');
 
-function Book(title,author,pages) {
+function Book(title,author,pages,read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = read;
 }
 
 function addBookToLibrary() {
@@ -17,13 +17,21 @@ function addBookToLibrary() {
     myLibrary.push(book);
 }
 
-function displayBooks() {
-    myLibrary.forEach(book => {
-        // const bookEl = document.createElement('div');
-        // bookEl.classList.add('book');
-        // bookEl.textContent = `${book.title} ${book.author} ${book.pages}`;
-        // container.appendChild(bookEl);
-    }); 
+function getBooksHTML() {
+    return myLibrary.reduce((htmlStr,book) => {
+        const bookHTML = `<tr>
+        <td class="data">${book.author}</td>
+        <td class="data">${book.title}</td>
+        <td class="data">${book.pages}</td>
+        ${book.read ? `<td class="data read">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon--read" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg></td>` : `<td class="data not-read icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon--read" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+        </svg></td>`}
+        </tr>`;
+        return htmlStr + bookHTML;
+    },''); 
 }
 
 function buildTable() {
@@ -32,6 +40,8 @@ function buildTable() {
         tableBodyHTML = `<tr>
         <td colspan="4" class="message--empty">Nothing to display :(</td>
     </tr>;`
+    } else {
+        tableBodyHTML = getBooksHTML();
     }
     const tableHTML = `<table class="table">
     <thead class="table-head">
@@ -46,7 +56,8 @@ function buildTable() {
     ${tableBodyHTML}
     </tbody>
     </table>`;
-    container.innerHTML = tableHTML + `<form class="form" action="" method=""> 
+
+    const formHTML = `<form class="form" action="" method=""> 
     <h2 class="form-title">Add New Book</h2>
     <div class="form-field">
         <label for="author">Author</label>
@@ -74,7 +85,7 @@ function buildTable() {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
     </svg>
 </div>`;
+    container.innerHTML = tableHTML + formHTML;
 }
 
-displayBooks();
 buildTable();
