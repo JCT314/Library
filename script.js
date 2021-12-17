@@ -1,4 +1,4 @@
-let myLibrary = [{title:"Green Eggs and Ham", author:"Dr.Seuss",pages:32,read:false}];
+let myLibrary = [];
 const container = document.querySelector('.container');
 const addBtn = document.querySelector('.icon-box');
 const form = document.querySelector('.form');
@@ -75,13 +75,13 @@ addBtn.addEventListener('click',(e) => {
     const tableContainer = document.querySelector('.table-container');
     tableContainer.style.display = "none";
     form.style.display = "block";
-    // change back to 90vh
     container.style.height = "0vh";
 });
 
 submitBtn.addEventListener('click',(e) => {
     e.preventDefault();
     addBookToLibrary();
+    authorInput.value = pagesInput.value = titleInput.value = ``;
     const tableContainer = document.querySelector('.table-container');
     tableContainer.style.display = "block";
     form.style.display = "none";
