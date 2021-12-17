@@ -73,7 +73,7 @@ body {
   height: 40px;
 }
 
-.read {
+.did-read {
   background-color: green;
 }
 
@@ -82,7 +82,6 @@ body {
 }
 
 .read,
-.not-read,
 .option {
   display: flex;
   align-items: center;
@@ -94,7 +93,7 @@ body {
   transition: transform 0.3s;
 }
 
-.icon--read:hover,
+.read:hover .icon--read,
 .option:hover {
   transform: scale(1.3);
 }
