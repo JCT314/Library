@@ -18,8 +18,9 @@ function addBookToLibrary() {
 }
 
 function getBooksHTML() {
-    return myLibrary.reduce((htmlStr,book) => {
+    return myLibrary.reduce((htmlStr,book,index) => {
         const bookHTML = `<tr>
+        <td class="data number">${index + 1}</td>
         <td class="data">${book.author}</td>
         <td class="data">${book.title}</td>
         <td class="data">${book.pages}</td>
@@ -46,6 +47,7 @@ function buildTable() {
     const tableHTML = `<div class="table-container"><table class="table">
     <thead class="table-head">
         <tr>
+            <th class="data-header">#</th>
             <th class="data-header">Title</th>
             <th class="data-header">Author</th>
             <th class="data-header">Pages</th>

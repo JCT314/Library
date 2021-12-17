@@ -28,7 +28,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 90%;
+  height: 80%;
   max-width: 900px;
   margin: 0 auto;
   overflow: auto;
@@ -53,6 +53,10 @@ body {
   padding: 10px;
   border: 1px solid #fff;
   white-space: nowrap;
+}
+
+.number {
+  text-align: center;
 }
 
 .message--empty {
