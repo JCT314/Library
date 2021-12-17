@@ -34,7 +34,7 @@ function getBooksHTML() {
         ${book.read ? `<td class="data read">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon--read" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg></td>` : `<td class="data not-read icon"><svg xmlns="http://www.w3.org/2000/svg" class="icon--read" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        </svg></td>` : `<td class="data not-read"><svg xmlns="http://www.w3.org/2000/svg" class="icon--read" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
         </svg></td>`}
         <td class="data"><div class="option"><svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -77,26 +77,39 @@ function buildTable() {
     container.innerHTML = tableHTML;
 }
 
-buildTable();
-addBtn.addEventListener('click',(e) => {
+function switchToTable() {
+    authorInput.value = pagesInput.value = titleInput.value = ``;
+    const tableContainer = document.querySelector('.table-container');
+    tableContainer.style.display = "flex";
+    form.style.display = "none";
+    container.style.height = "90vh";
+}
+
+function switchToForm(e) {
+    e.stopPropagation();
     const form = document.querySelector('.form');
     const tableContainer = document.querySelector('.table-container');
     tableContainer.style.display = "none";
     form.style.display = "block";
     container.style.height = "0vh";
+}
+
+buildTable();
+
+document.body.addEventListener('click', (e) => {
+    const form = document.querySelector('.form');
+    if(form.style.display === "") return;
+    const isFormSelected = e.target.closest('.form');
+    if(!isFormSelected) {
+        switchToTable();
+    }
 });
+
+addBtn.addEventListener('click',switchToForm);
 
 submitBtn.addEventListener('click',(e) => {
     e.preventDefault();
     addBookToLibrary();
-    authorInput.value = pagesInput.value = titleInput.value = ``;
-    const tableContainer = document.querySelector('.table-container');
-    tableContainer.style.display = "block";
-    form.style.display = "none";
-    container.style.height = "90vh";
+    switchToTable();
     buildTable();
 });
-
-
-{/* 
- */}
