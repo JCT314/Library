@@ -1,5 +1,5 @@
 let myLibrary = [{title:"Green Eggs and Ham", author:"Dr.Seuss",pages:32,read:false},
-{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},];
+{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Sea of Monsters", author:"Rick Riordan",pages:300,read:false},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},];
 const container = document.querySelector('.container');
 
 function Book(title,author,pages,read) {
@@ -43,7 +43,7 @@ function buildTable() {
     } else {
         tableBodyHTML = getBooksHTML();
     }
-    const tableHTML = `<table class="table">
+    const tableHTML = `<div class="table-container"><table class="table">
     <thead class="table-head">
         <tr>
             <th class="data-header">Title</th>
@@ -55,7 +55,7 @@ function buildTable() {
     <tbody>
     ${tableBodyHTML}
     </tbody>
-    </table>`;
+    </table></div>`;
 
     const formHTML = `<form class="form" action="" method=""> 
     <h2 class="form-title">Add New Book</h2>

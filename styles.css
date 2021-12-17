@@ -12,9 +12,6 @@ body {
   height: 90vh;
   position: relative;
   background-color: #000000;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   padding-top: 30px;
 }
 
@@ -29,11 +26,11 @@ body {
 
 .table-container {
   display: flex;
-  padding-top: 40px;
   align-items: flex-start;
   justify-content: center;
-  height: 50%;
-  max-width: 800px;
+  height: 90%;
+  max-width: 900px;
+  margin: 0 auto;
   overflow: auto;
 }
 
