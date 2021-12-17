@@ -1,0 +1,19 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+
+.book {
+  background-color: #ddd;
+}
+
+.book:nth-child(even) {
+  background-color: #aaa;
+}
