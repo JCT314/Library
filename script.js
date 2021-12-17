@@ -1,6 +1,12 @@
-let myLibrary = [{title:"Green Eggs and Ham", author:"Dr.Seuss",pages:32,read:false},
-{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Sea of Monsters", author:"Rick Riordan",pages:300,read:false},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},{title:"Percy Jackson", author:"Rick Riordan",pages:269,read:true},];
+let myLibrary = [{title:"Green Eggs and Ham", author:"Dr.Seuss",pages:32,read:false}];
 const container = document.querySelector('.container');
+const addBtn = document.querySelector('.icon-box');
+const form = document.querySelector('.form');
+const submitBtn = document.querySelector('.btn--submit');
+const authorInput = document.querySelector('#author');
+const titleInput = document.querySelector('#title');
+const pagesInput = document.querySelector('#pages');
+const readInput = document.querySelector('#read');
 
 function Book(title,author,pages,read) {
     this.title = title;
@@ -10,10 +16,11 @@ function Book(title,author,pages,read) {
 }
 
 function addBookToLibrary() {
-    const title = prompt("Title name?");
-    const author = prompt("Author name?");
-    const pages = Number(prompt("Pages?"));
-    const book = new Book(title,author,pages);
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = Number(pagesInput.value);
+    const read = readInput.value === "Yes" ? true : false;
+    const book = new Book(title,author,pages,read);
     myLibrary.push(book);
 }
 
@@ -48,8 +55,8 @@ function buildTable() {
     <thead class="table-head">
         <tr>
             <th class="data-header">#</th>
-            <th class="data-header">Title</th>
             <th class="data-header">Author</th>
+            <th class="data-header">Title</th>
             <th class="data-header">Pages</th>
             <th class="data-header">Read?</th>
         </tr>
@@ -59,35 +66,26 @@ function buildTable() {
     </tbody>
     </table></div>`;
 
-    const formHTML = `<form class="form" action="" method=""> 
-    <h2 class="form-title">Add New Book</h2>
-    <div class="form-field">
-        <label for="author">Author</label>
-        <input class="input" id="author" type="text" placeholder="author name">
-    </div> 
-    <div class="form-field">
-        <label for="title">Title</label>
-        <input class="input" id="title" type="text" placeholder="book title">
-    </div>
-    <div class="form-field">
-        <label for="pages">Pages</label>
-        <input class="input" id="pages" type="number" placeholder="enter total pages">
-    </div>
-    <div class="form-field">
-        <label for="read">Read?</label>
-        <select class="dropdown" id="read">
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
-    </div>
-    <button class="btn">Submit</button>
-</form>
-<div class="icon-box">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon--add" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-    </svg>
-</div>`;
-    container.innerHTML = tableHTML + formHTML;
+    container.innerHTML = tableHTML;
 }
 
 buildTable();
+addBtn.addEventListener('click',(e) => {
+    const form = document.querySelector('.form');
+    const tableContainer = document.querySelector('.table-container');
+    tableContainer.style.display = "none";
+    form.style.display = "block";
+    // change back to 90vh
+    container.style.height = "0vh";
+});
+
+submitBtn.addEventListener('click',(e) => {
+    e.preventDefault();
+    addBookToLibrary();
+    const tableContainer = document.querySelector('.table-container');
+    tableContainer.style.display = "block";
+    form.style.display = "none";
+    container.style.height = "90vh";
+    buildTable();
+});
+

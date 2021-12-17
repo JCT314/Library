@@ -12,5 +12,33 @@
     <h1 class="heading">Library</h1>
     <div class="container">
     </div>
+    <form class="form" action="" method=""> 
+        <h2 class="form-title">Add New Book</h2>
+        <div class="form-field">
+            <label for="author">Author</label>
+            <input class="input" id="author" type="text" placeholder="author name">
+        </div> 
+        <div class="form-field">
+            <label for="title">Title</label>
+            <input class="input" id="title" type="text" placeholder="book title">
+        </div>
+        <div class="form-field">
+            <label for="pages">Pages</label>
+            <input class="input" id="pages" type="number" placeholder="enter total pages">
+        </div>
+        <div class="form-field">
+            <label for="read">Read?</label>
+            <select class="dropdown" id="read">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+        <button class="btn--submit">Submit</button>
+    </form>
+    <div class="icon-box">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon--add" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+    </div>
 </body>
 </html>

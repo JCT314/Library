@@ -6,6 +6,8 @@
 
 body {
   font-family: sans-serif;
+  height: 100vh;
+  background-color: #000;
 }
 
 .container {
@@ -102,6 +104,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .icon-box:hover {
@@ -161,7 +164,7 @@ label {
   border-width: 2px;
 }
 
-.btn {
+.btn--submit {
   border: 1px solid #fff;
   background-color: #000;
   color: #fff;
@@ -173,13 +176,14 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.btn:hover {
+.btn--sumit:hover {
   transform: scale(1.1);
 }
 
-.btn:active {
+.btn--sumit:active {
   transform: scale(0.9);
 }
 
