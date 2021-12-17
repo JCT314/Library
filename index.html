@@ -11,6 +11,58 @@
 <body>
     <div class="container">
         <h1 class="heading">Library</h1>
+        <table class="table">
+            <thead class="table-head">
+                <tr>
+                    <th class="data-header">Title</th>
+                    <th class="data-header">Author</th>
+                    <th class="data-header">Pages</th>
+                    <th class="data-header">Read?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="data">Blue Eggs</td>
+                    <td class="data">Thomas Wiplur</td>
+                    <td class="data">50</td>
+                    <td class="data read icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg></td>
+                </tr>
+                <tr>
+                    <td class="data">Blue Eggs With Sausage</td>
+                    <td class="data">Thomas Wiplur Jackson</td>
+                    <td class="data">50</td>
+                    <td class="data not-read icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+                      </svg></td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="form" action="" method=""> 
+            <h2 class="form-title">Add New Book</h2>
+            <div class="form-field">
+                <label for="author">Author</label>
+                <input class="input" id="author" type="text" placeholder="author name">
+            </div> 
+            <div class="form-field">
+                <label for="title">Title</label>
+                <input class="input" id="title" type="text" placeholder="book title">
+            </div>
+            <div class="form-field">
+                <label for="pages">Pages</label>
+                <input class="input" id="pages" type="number" placeholder="enter total pages">
+            </div>
+            <div class="form-field">
+                <label for="read">Read?</label>
+                <select class="dropdown" id="read">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <button class="btn">Submit</button>
+        </form>
     </div>
 </body>
 </html>

@@ -4,16 +4,132 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: sans-serif;
+}
+
 .container {
-  max-width: 1000px;
+  height: 100vh;
+  background-color: #000000;
+}
+
+.heading {
+  background-color: #1a1a75;
+  color: #fff;
+  padding: 20px;
+}
+
+.table {
+  color: #fff;
+  border: 1px solid #fff;
+  display: none;
+}
+
+.table-head {
+  text-align: left;
+}
+
+.data-header {
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.data {
+  padding: 10px;
+  border: 1px solid #fff;
+}
+
+.message--empty {
+  text-align: center;
+  font-size: 32px;
+}
+
+.icon {
+  width: 8px;
+  height: 8px;
+}
+
+.read {
+  background-color: green;
+}
+
+.not-read {
+  background-color: #777;
+}
+
+.form {
+  padding: 20px;
+  border: 1px solid #fff;
+  max-width: 400px;
+  margin: 50px auto;
+  color: #fff;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form-title {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.form-field {
+  margin-bottom: 40px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
 }
 
-.book {
-  background-color: #ddd;
+label {
+  width: 75px;
+  text-align: left;
 }
 
-.book:nth-child(even) {
-  background-color: #aaa;
+.input {
+  width: 150px;
+  background-color: #000;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
+.input::placeholder {
+  color: #fff;
+}
+
+.input:focus {
+  outline: none;
+  border-width: 2px;
+}
+
+.btn {
+  border: 1px solid #fff;
+  background-color: #000;
+  color: #fff;
+  padding: 20px 40px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 60px;
+  transition: transform 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+.dropdown {
+  width: 150px;
 }
