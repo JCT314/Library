@@ -14,6 +14,11 @@ const checkMarkIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon--read
 const minusIcon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon--read" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
 </svg>`;
+const messageContainer = document.querySelector('.message-container');
+const authorEl = document.querySelector('.author');
+const titleEl = document.querySelector('.title');
+const noBtn = document.querySelector('.no-btn');
+const yesBtn = document.querySelector('.yes-btn');
 
 function Book(title,author,pages,read) {
     this.title = title;
@@ -85,7 +90,9 @@ function switchToTable() {
     const tableContainer = document.querySelector('.table-container');
     tableContainer.style.display = "flex";
     form.style.display = "none";
-    container.style.height = "90vh";
+    messageContainer.style.display = "none";
+    container.style.display = "block";
+    addBtn.style.display = "flex";
 }
 
 function switchToForm(e) {
@@ -94,7 +101,7 @@ function switchToForm(e) {
     const tableContainer = document.querySelector('.table-container');
     tableContainer.style.display = "none";
     form.style.display = "block";
-    container.style.height = "0vh";
+    container.style.display = "none";
 }
 
 function toggleRead(e) {
@@ -116,18 +123,33 @@ function deleteBook(e) {
     if(!deleteContainer) return;
     addBtn.style.display='none';
     const rowIndex = e.target.closest('tr').dataset.index;
+    const tableContainer = document.querySelector('.table-container');
     tableContainer.style.display="none";
+    const {title,author} = myLibrary[rowIndex];
+    container.style.display = "none";
+    messageContainer.style.display = "flex";
+    messageContainer.setAttribute('data-index',rowIndex);
+    authorEl.textContent = author;
+    titleEl.textContent = title;
 }
 
-// buildTable();
+buildTable();
 
 document.body.addEventListener('click', (e) => {
-    const form = document.querySelector('.form');
-    if(form.style.display === "") return;
-    const isFormSelected = e.target.closest('.form');
-    if(!isFormSelected) {
-        switchToTable();
+    if(form.style.display !== "" && form.style.display !== "none") {
+        const isFormSelected = e.target.closest('.form');
+        if(!isFormSelected) {
+            switchToTable();
+        }
     }
+    
+    if(messageContainer.style.display !== "" && messageContainer.style.display !== "none") {
+        const isMessageSelected = e.target.closest('.delete-message');
+        console.log(isMessageSelected);
+        if(!isMessageSelected) {
+            switchToTable();
+        }
+    } 
 });
 
 container.addEventListener('click', (e) => {
@@ -143,4 +165,15 @@ submitBtn.addEventListener('click',(e) => {
     addBookToLibrary();
     switchToTable();
     buildTable();
+});
+
+yesBtn.addEventListener('click', (e) => {
+    index = messageContainer.dataset.index;
+    myLibrary.splice(index,1);
+    switchToTable();
+    buildTable();
+});
+
+noBtn.addEventListener('click', (e) => {
+    switchToTable();
 });
