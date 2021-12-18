@@ -26,6 +26,7 @@ body {
   align-items: center;
 }
 
+/* Table */
 .table-container {
   display: flex;
   align-items: flex-start;
@@ -126,6 +127,8 @@ body {
   transform: scale(1);
 }
 
+/* Book Form */
+
 .form {
   padding: 20px;
   border: 1px solid #fff;
@@ -203,4 +206,61 @@ label {
 
 .dropdown {
   width: 150px;
+}
+
+/* Delete Message */
+.message-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-message {
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 20px;
+}
+
+.title,
+.author {
+  font-weight: bolder;
+  color: #26d826;
+}
+
+.btns-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: left;
+  gap: 30px;
+}
+
+.yes-btn,
+.no-btn {
+  background-color: #000;
+  padding: 10px 20px;
+  display: block;
+  /* border-radius: 20px; */
+  transition: 0.3s transform;
+}
+
+.yes-btn:hover,
+.no-btn:hover {
+  transform: scale(1.2);
+}
+
+.yes-btn:active,
+.no-btn:active {
+  transform: scale(0.9);
+}
+
+.yes-btn {
+  color: #26d826;
+  border: 1px solid #26d826;
+}
+
+.no-btn {
+  color: #df2525;
+  border: 1px solid #df2525;
 }

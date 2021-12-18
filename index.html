@@ -10,7 +10,8 @@
 </head>
 <body>
     <h1 class="heading">Library</h1>
-    <div class="container">
+    <!-- Temp delete none after -->
+    <div class="container" style="display:none">
     </div>
     <form class="form" action="" method=""> 
         <h2 class="form-title">Add New Book</h2>
@@ -35,6 +36,16 @@
         </div>
         <button class="btn--submit">Submit</button>
     </form>
+    <div class="message-container">
+        <div class="delete-message">
+            <p>Are you sure you want to delete</p> 
+            <p><span class="title">Green eggs</span> by <span class="author">Dr. S</span>?</p>
+            <div class="btns-container">
+                <button class="yes-btn">Yes</button>
+                <button class="no-btn">No</button>
+            </div>
+        </div>
+    </div>
     <div class="icon-box">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon--add" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
