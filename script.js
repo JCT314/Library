@@ -1,5 +1,5 @@
-let myLibrary = [{author:'author',title:'a title',pages:1,read:true},
-{author:'a',title:'a',pages:1,read:false}];
+let myLibrary = [{author:'Rick Riordan',title:'The Lightning Thief',pages:416,read:true},
+{author:'James Dashner',title:'The Maze Runner',pages:416,read:false},];
 const container = document.querySelector('.container');
 const addBtn = document.querySelector('.icon-box');
 const form = document.querySelector('.form');
@@ -20,7 +20,7 @@ const titleEl = document.querySelector('.title');
 const noBtn = document.querySelector('.no-btn');
 const yesBtn = document.querySelector('.yes-btn');
 const formTitle = document.querySelector('.form-title');
-let isEditing = true;
+let isEditing = false;
 
 function Book(title,author,pages,read) {
     this.title = title;
@@ -118,6 +118,7 @@ function toggleRead(e) {
     }
     readContainer.classList.toggle('did-read');
     readContainer.classList.toggle('not-read');
+    updateStorage();
 }
 
 function deleteBook(e) {
@@ -154,6 +155,23 @@ function editBook(e) {
     isEditing = true;
 }
 
+function init() {
+    let bookStorage = window.localStorage;
+    booksJSON = bookStorage.getItem('books');
+    if(!booksJSON) {
+        booksJSON = JSON.stringify(myLibrary);
+        localStorage.setItem('books',booksJSON);
+    } else {
+        myLibrary = JSON.parse(booksJSON);
+    }
+}
+
+function updateStorage() {
+    const booksJSON = JSON.stringify(myLibrary);
+    localStorage.setItem('books',booksJSON);
+}
+
+init();
 buildTable();
 
 document.body.addEventListener('click', (e) => {
@@ -198,6 +216,7 @@ submitBtn.addEventListener('click',(e) => {
     } else {
         addBookToLibrary();
     }
+    updateStorage();
     switchToTable();
     buildTable();
 });
@@ -205,6 +224,7 @@ submitBtn.addEventListener('click',(e) => {
 yesBtn.addEventListener('click', (e) => {
     index = messageContainer.dataset.index;
     myLibrary.splice(index,1);
+    updateStorage();
     switchToTable();
     buildTable();
 });
