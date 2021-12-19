@@ -19,6 +19,8 @@ const authorEl = document.querySelector('.author');
 const titleEl = document.querySelector('.title');
 const noBtn = document.querySelector('.no-btn');
 const yesBtn = document.querySelector('.yes-btn');
+const formTitle = document.querySelector('.form-title');
+let isEditing = true;
 
 function Book(title,author,pages,read) {
     this.title = title;
@@ -133,6 +135,25 @@ function deleteBook(e) {
     titleEl.textContent = title;
 }
 
+function editBook(e) {
+    const editContainer = e.target.closest('.edit');
+    if(!editContainer) return;
+    addBtn.style.display='none';
+    const rowIndex = e.target.closest('tr').dataset.index;
+    const tableContainer = document.querySelector('.table-container');
+    tableContainer.style.display="none";
+
+    const {title,author,pages,read} = myLibrary[rowIndex];
+    container.style.display = "none";
+    form.style.display = "block";
+    formTitle.innerHTML = `<p data-index=${rowIndex}>Editing <span class="title">${title}</span></p> by <span class="author">${author}</span>`;
+    authorInput.value = author;
+    titleInput.value = title;
+    pagesInput.value = pages;
+    readInput.value = read ? "Yes" : "No";
+    isEditing = true;
+}
+
 buildTable();
 
 document.body.addEventListener('click', (e) => {
@@ -156,13 +177,27 @@ container.addEventListener('click', (e) => {
     e.stopPropagation();
     toggleRead(e);
     deleteBook(e);
+    editBook(e);
 });
 
 addBtn.addEventListener('click',switchToForm);
 
 submitBtn.addEventListener('click',(e) => {
     e.preventDefault();
-    addBookToLibrary();
+    if(isEditing) {
+        const index = formTitle.querySelector('p').dataset.index;
+        const book = myLibrary[index];
+        book.author = authorInput.value;
+        book.pages = pagesInput.value;
+        book.title = titleInput.value;
+        book.read = readInput.value === 'Yes' ? true : false;
+        authorInput.value = pagesInput.value = titleInput.value = ``;
+        formTitle.innerHTML = ``;
+        formTitle.textContent = `Add a New Book`;
+        isEditing = false;
+    } else {
+        addBookToLibrary();
+    }
     switchToTable();
     buildTable();
 });
